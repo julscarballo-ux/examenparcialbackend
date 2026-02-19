@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('loans', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre_solicitante');
+            $table->foreignId('book_id')->constrained('books')->cascadeOnDelete();
+            $table->dateTime('fecha_prestamo');
+            $table->dateTime('fecha_devolucion')->nullable();
             $table->timestamps();
         });
     }
@@ -25,3 +29,4 @@ return new class extends Migration
         Schema::dropIfExists('loans');
     }
 };
+
